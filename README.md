@@ -1,38 +1,155 @@
-# Customer-Churn-Prediction:
-### Project Demo Link - [Click Here](https://customer-churn-predictions.herokuapp.com/)
+# Customer Churn Prediction
+
 ![Churn](https://user-images.githubusercontent.com/90024661/135493461-457a32f2-c03a-4dfa-a9e7-1d1a362dd5f1.png)
 
-  Churn prediction means detecting which customers are likely to cancel a subscription to a service based on how they use the service. It is a critical prediction for many businesses because acquiring new clients often costs more than retaining existing ones. Once you can identify those customers that are at risk of cancelling, you should know exactly what marketing action to take for each individual customer to maximise the chances that the customer will remain.
-#### **Why is it so important?**
-  Customer churn is a common problem across businesses in many sectors. If you want to grow as a company, you have to invest in acquiring new clients. Every time a client leaves, it represents a significant investment lost. Both time and effort need to be channelled into replacing them. Being able to predict when a client is likely to leave, and offer them incentives to stay, can offer huge savings to a business.
-#### **About This Project:**
-  * In our dataset, Total amount of Monthly charges are around 16,056,169$ from that 18% of amount loss around 2862927% Due to the customer churn.        
-  * Total number of customer around 7043 but 27% of people to be churn which around 1869 customer from the overall customer, 
-  * So we need to predict the person who are all wants to be churn.Its very important to that company because they want new customer as well as retain the previous customer to stay in there company.
-#### Steps involved in Model Deployment:
-  * Data Analysis (EDA)
-  * Data Preprocessing.
-  * Feature Engineering. 
-  * Feature Selection (SelectKBest)
-  * Fit into Algorithm (ML Algorithm)
-  * Hyper Parameter Tunning (RandomSearchCV)
-  * Dump model (Pickle)
-  * Creating Web Application using Flask
-  * Deployed in Web using heroku platform
-#### Packages Used:
-This project requires **Python** and the following packages are in below:
-  * [Numpy](https://numpy.org/)
-  * [Pandas](https://pandas.pydata.org/)
-  * [Matplotlib](https://matplotlib.org/)
-  * [Seaborn](https://seaborn.pydata.org/)
-  * [Scikit-learn](https://scikit-learn.org/stable/)
-  * [Scipy](https://www.scipy.org/)
-  * [Imblearn](https://imbalanced-learn.org/stable/)
-  * [Counter](https://docs.python.org/3/library/collections.html)
-  * [Flask](https://flask.palletsprojects.com/en/2.0.x/)
-#### How To Run:
-  In this project, First you need to download dataset [Telco-Customer-churn.csv](https://github.com/satz2000/End-to-end-project---Customer-churn/blob/main/Telco-Customer-Churn.csv) Then open your commant prompt and run this code [pip install jupyterlab](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html). After [pip install requirements.txt](https://github.com/satz2000/End-to-end-project---Customer-churn/blob/main/requirements.txt) all packages are needed in this project are automatically installed on your machine. After Download [app.py](https://github.com/satz2000/End-to-end-project---Customer-churn/blob/main/app.py) files and run [TelecomCustomerChurn.ipynb](https://github.com/satz2000/End-to-end-project---Customer-churn/blob/main/TelecomCustomerChurn.ipynb) files  into your machine And some inputs to check our model and Its accuracy of prediction
-#### Objective:
-  Predict the customer likely to be Churn or not by using Gradient Boost Classifier and my target is to find customer to be Churn or Not.
-  
-Project Demo Link - [Click Here](https://customer-churn-predictions.herokuapp.com/)
+## Overview
+
+Churn prediction means detecting which customers are likely to cancel a subscription to a service based on how they use the service. It is a critical prediction for many businesses because acquiring new clients often costs more than retaining existing ones.
+
+### Why is it important?
+Customer churn is a common problem across businesses in many sectors. Every time a client leaves, it represents a significant investment lost. Being able to predict when a client is likely to leave and offer them incentives to stay can offer huge savings to a business.
+
+### About This Project
+- **Dataset**: 7,043 customers with 27% churn rate (1,869 customers)
+- **Model**: RandomForest Classifier with 200 estimators
+- **Accuracy**: ~79% on test data
+- **Deployment**: Flask web application with Render deployment support
+
+## Project Structure
+
+```
+.
+├── app.py                      # Flask application
+├── train_model.py              # Model training script
+├── Model.sav                   # Trained model (pickle)
+├── Telco-Customer-Churn.csv    # Dataset
+├── requirements.txt            # Python dependencies
+├── render.yaml                 # Render deployment config
+├── Procfile                    # Deployment configuration
+├── templates/
+│   └── home.html              # Web interface
+└── TelecomCustomerChurn.ipynb # Jupyter notebook (EDA & analysis)
+```
+
+## Prerequisites
+
+- Python 3.7 or higher
+- pip (Python package manager)
+
+## Installation & Setup
+
+### 1. Clone or download the project
+
+```bash
+git clone <your-repo-url>
+cd End-to-end-project---Customer-churn-main
+```
+
+### 2. Create a virtual environment (recommended)
+
+```bash
+python -m venv .venv
+# On Windows:
+.venv\Scripts\activate
+# On Mac/Linux:
+source .venv/bin/activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Running the Project
+
+### Option 1: Run the Web Application (Recommended)
+
+The pre-trained model (`Model.sav`) is already included, so you can run the web application directly:
+
+```bash
+python app.py
+```
+
+The application will start at `http://127.0.0.1:5000`
+
+Open your browser and navigate to `http://127.0.0.1:5000` to use the prediction interface.
+
+### Option 2: Train the Model from Scratch
+
+If you want to train the model yourself:
+
+```bash
+python train_model.py
+```
+
+This will:
+- Load the dataset from `Telco-Customer-Churn.csv`
+- Preprocess the data
+- Train a RandomForest Classifier
+- Save the model to `Model.sav`
+- Display the accuracy score
+
+### Option 3: Explore the Jupyter Notebook
+
+To explore the data analysis and model development:
+
+```bash
+jupyter notebook TelecomCustomerChurn.ipynb
+```
+
+## Using the Web Application
+
+Once the app is running, you can predict customer churn by entering:
+
+**Categorical Fields:**
+- **Dependents**: No, Yes
+- **OnlineSecurity**: No, Yes, No internet service
+- **OnlineBackup**: Yes, No, No internet service
+- **DeviceProtection**: No, Yes, No internet service
+- **TechSupport**: No, Yes, No internet service
+- **Contract**: Month-to-month, One year, Two year
+- **PaperlessBilling**: Yes, No
+
+**Numeric Fields:**
+- **tenure**: 0 to 72 (months)
+- **MonthlyCharges**: 18.25 to 118.75
+- **TotalCharges**: 18.8 to 8684.8
+
+## Deployment
+
+### Deploy to Render
+
+1. Push your code to GitHub
+2. Go to [render.com](https://render.com) and create an account
+3. Click "New +" → "Web Service"
+4. Connect your GitHub repository
+5. Render will automatically detect the `render.yaml` configuration
+6. Click "Create Web Service"
+
+The app will be deployed at: `https://your-app-name.onrender.com`
+
+## Model Pipeline
+
+1. **Data Analysis (EDA)** - Exploratory data analysis
+2. **Data Preprocessing** - Handle missing values, convert data types
+3. **Feature Engineering** - Create relevant features
+4. **Feature Selection** - SelectKBest for optimal features
+5. **Model Training** - RandomForest Classifier
+6. **Model Serialization** - Save model using pickle
+7. **Web Application** - Flask interface for predictions
+8. **Deployment** - Cloud deployment (Render)
+
+## Technologies Used
+
+- **Python** - Programming language
+- **Flask** - Web framework
+- **Scikit-learn** - Machine learning library
+- **Pandas** - Data manipulation
+- **NumPy** - Numerical computing
+- **Pickle** - Model serialization
+- **Gunicorn** - WSGI HTTP Server
+
+## Objective
+
+Predict whether a customer is likely to churn (cancel their subscription) based on their service usage patterns and demographic information.
